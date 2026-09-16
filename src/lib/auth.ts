@@ -16,7 +16,13 @@ export function clearAuth(): void {
 export function getUser(): User | null {
   if (typeof window === 'undefined') return null;
   const raw = localStorage.getItem(USER_KEY);
-  return raw ? JSON.parse(raw) : null;
+  if (!raw || raw === 'undefined' || raw === 'null') return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    localStorage.removeItem(USER_KEY);
+    return null;
+  }
 }
 
 export function getToken(): string | null {

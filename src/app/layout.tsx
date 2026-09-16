@@ -3,9 +3,9 @@ import './globals.css';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'Local Connect — One Place for Everything',
+  title: 'Local Connect — Your Community. Your People. Your Network.',
   description:
-    'Connect with local businesses, healthcare, services and your community in Andhra Pradesh.',
+    'A trusted digital community for people and local businesses across Andhra Pradesh.',
   manifest: '/manifest.json',
   icons: { icon: '/favicon.ico' },
 };
@@ -26,9 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <div className="mobile-container">
-            {children}
-          </div>
+          {children}
         </Providers>
       </body>
     </html>

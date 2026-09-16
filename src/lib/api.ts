@@ -1,4 +1,10 @@
-import type { RegisterPayload, LoginPayload } from '@/types';
+import type { RegisterPayload, LoginPayload, District, Mandal, Village } from '@/types';
+
+interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message?: string;
+}
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -25,33 +31,58 @@ async function req<T = unknown>(path: string, options?: RequestInit): Promise<T>
 
 export const api = {
   // Auth
-  register: (data: RegisterPayload) =>
-    req('/auth/register', { method: 'POST', body: JSON.stringify(data) }),
-  login: (data: LoginPayload) =>
-    req('/auth/login', { method: 'POST', body: JSON.stringify(data) }),
+  register: async (data: RegisterPayload) => {
+    const res = await req<ApiResponse<{ token: string; user: unknown }>>('/auth/register', { method: 'POST', body: JSON.stringify(data) });
+    return res.data;
+  },
+  login: async (data: LoginPayload) => {
+    const res = await req<ApiResponse<{ token: string; user: unknown }>>('/auth/login', { method: 'POST', body: JSON.stringify(data) });
+    return res.data;
+  },
 
   // Locations
-  districts: () => req('/locations/districts'),
-  mandals: (districtId: number) => req(`/locations/districts/${districtId}/mandals`),
-  villages: (mandalId: number) => req(`/locations/mandals/${mandalId}/villages`),
+  districts: async () => {
+    const response = await req<ApiResponse<District[]>>('/locations/districts');
+    return response.data;
+  },
+  mandals: async (districtId: number) => {
+    const response = await req<ApiResponse<Mandal[]>>(`/locations/districts/${districtId}/mandals`);
+    return response.data;
+  },
+  villages: async (mandalId: number) => {
+    const response = await req<ApiResponse<Village[]>>(`/locations/mandals/${mandalId}/villages`);
+    return response.data;
+  },
 
   // Businesses
-  businesses: (params?: Record<string, string | number | boolean>) =>
-    req(`/businesses?${new URLSearchParams(
-      Object.fromEntries(
-        Object.entries(params ?? {}).map(([k, v]) => [k, String(v)])
-      )
-    )}`),
-  myBusinesses: () => req('/businesses/my'),
-  createBusiness: (data: unknown) =>
-    req('/businesses', { method: 'POST', body: JSON.stringify(data) }),
-  updateStatus: (id: number, status: string) =>
-    req(`/businesses/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) }),
+  businesses: async (params?: Record<string, string | number | boolean>) => {
+    const res = await req<ApiResponse<unknown[]>>(`/businesses?${new URLSearchParams(
+      Object.fromEntries(Object.entries(params ?? {}).map(([k, v]) => [k, String(v)]))
+    )}`);
+    return res.data;
+  },
+  myBusinesses: async () => {
+    const res = await req<ApiResponse<unknown[]>>('/businesses/my');
+    return res.data;
+  },
+  createBusiness: async (data: unknown) => {
+    const res = await req<ApiResponse<unknown>>('/businesses', { method: 'POST', body: JSON.stringify(data) });
+    return res.data;
+  },
+  updateStatus: async (id: number, status: string) => {
+    const res = await req<ApiResponse<unknown>>(`/businesses/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) });
+    return res.data;
+  },
 
   // Categories
-  categories: () => req('/categories'),
+  categories: async () => {
+    const res = await req<ApiResponse<unknown[]>>('/categories');
+    return res.data;
+  },
 
   // Community
-  communityPosts: (villageId?: number) =>
-    req(`/community${villageId ? `?villageId=${villageId}` : ''}`),
+  communityPosts: async (villageId?: number) => {
+    const res = await req<ApiResponse<unknown[]>>(`/community${villageId ? `?villageId=${villageId}` : ''}`);
+    return res.data;
+  },
 };

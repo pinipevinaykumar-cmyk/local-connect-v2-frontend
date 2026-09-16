@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
@@ -29,6 +29,11 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get('type');
+    if (type === 'MERCHANT') setUserType('MERCHANT');
+  }, []);
 
   const { data: districts = [] } = useQuery<District[]>({
     queryKey: ['districts'],
@@ -201,6 +206,7 @@ export default function RegisterPage() {
           onChange={(e) => setUsername(e.target.value)}
           leftIcon={<User size={15} />}
           error={errors.username}
+          autoComplete="off"
         />
 
         {/* Password */}
@@ -212,6 +218,7 @@ export default function RegisterPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             leftIcon={<Lock size={15} />}
+            autoComplete="new-password"
             rightIcon={
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-gray-400">
                 {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
@@ -248,6 +255,7 @@ export default function RegisterPage() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           leftIcon={<Lock size={15} />}
+          autoComplete="new-password"
           rightIcon={
             <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="text-gray-400">
               {showConfirm ? <EyeOff size={15} /> : <Eye size={15} />}
