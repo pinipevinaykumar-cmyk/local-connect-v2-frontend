@@ -57,13 +57,16 @@ export default function HomePage() {
 
       {/* ── Header ── */}
       <div
-        className="px-4 pt-12 pb-8 relative overflow-hidden"
+        className="px-4 pt-12 pb-7 relative overflow-hidden"
         style={{ background: 'linear-gradient(135deg, #0d2137 0%, #1E7B3B 100%)' }}
       >
-        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
-        <div className="absolute top-6 -right-4 w-24 h-24 rounded-full bg-white/5" />
+        {/* decorative blobs */}
+        <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/5" />
+        <div className="absolute top-8 -right-6 w-28 h-28 rounded-full bg-white/5" />
+        <div className="absolute -bottom-8 -left-6 w-32 h-32 rounded-full bg-white/5" />
 
-        <div className="relative flex items-start justify-between mb-5">
+        {/* top bar: location + bell */}
+        <div className="relative flex items-center justify-between mb-5">
           <div className="flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1">
             <MapPin size={11} className="text-green-300" />
             <span className="text-white/80 text-xs font-medium">{locationLabel}</span>
@@ -73,16 +76,31 @@ export default function HomePage() {
           </button>
         </div>
 
-        <div className="relative mb-5">
-          <h1 className="text-2xl font-bold text-white">
-            Hey, {user?.username || 'Welcome'} 👋
-          </h1>
-          <p className="text-white/70 text-sm mt-1.5 italic">{getGreeting()}</p>
-          {businesses.length > 0 && (
-            <p className="text-white/40 text-xs mt-1">{businesses.length} businesses near you</p>
-          )}
-        </div>
+        {/* brand */}
+        <div className="relative">
+          <div className="flex items-center gap-2.5 mb-1">
+            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-[#e9ae4a] shadow-lg shadow-black/20">
+              <span className="text-sm font-black text-[#17352a]">LC</span>
+            </span>
+            <h1 className="text-2xl font-black text-white tracking-tight">Local Connect</h1>
+          </div>
+          <p className="text-green-200/80 text-sm font-medium mb-4">
+            Your Community. Your People. Your Network.
+          </p>
 
+          {/* greeting divider */}
+          <div className="border-t border-white/10 pt-3.5 flex items-center justify-between">
+            <div>
+              <p className="text-white/90 text-sm font-semibold">Hey, {user?.username || 'Welcome'} 👋</p>
+              <p className="text-white/50 text-xs mt-0.5 italic">{getGreeting()}</p>
+            </div>
+            {businesses.length > 0 && (
+              <span className="text-[10px] font-semibold bg-white/10 text-green-200 rounded-full px-2.5 py-1">
+                {businesses.length} nearby
+              </span>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="px-4 -mt-1 pb-24 space-y-6">
