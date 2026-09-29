@@ -32,7 +32,7 @@ export default function PlayerProfilePage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
 
-  const player: Player | null = null;
+  const player = null as Player | null;
 
   if (!player) {
     return (

@@ -1,10 +1,12 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, MapPin } from 'lucide-react';
 import { loadPhases, type PhaseConfig } from '@/lib/phaseConfig';
-import { loadBmplRegistration, type BmplRegistration } from '@/app/(app)/sports/bmpl/register/page';
+import { loadBmplRegistration, type BmplRegistration } from '@/lib/bmplRegistration';
 
 const BMPL_VILLAGES = [
   'Arikarevula', 'Balabhadrapuram', 'Biccavolu', 'Illapalle',

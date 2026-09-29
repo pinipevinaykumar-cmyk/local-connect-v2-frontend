@@ -4,28 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Camera, CheckCircle, Clock, Lock, RefreshCw, Upload } from 'lucide-react';
 import { getUser } from '@/lib/auth';
-
-export const BMPL_REG_KEY = 'bmpl_player_registration_v1';
-
-export type BmplRegistration = {
-  registrationId: string;
-  name: string;
-  village: string;
-  role: string;
-  age: string;
-  mobile: string;
-  submittedAt: string;
-  status: 'Pending' | 'Verified' | 'Rejected';
-  photoUrl?: string; // base64 data URL
-};
-
-export function loadBmplRegistration(): BmplRegistration | null {
-  if (typeof window === 'undefined') return null;
-  try {
-    const raw = localStorage.getItem(BMPL_REG_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch { return null; }
-}
+import { BMPL_REG_KEY, loadBmplRegistration, type BmplRegistration } from '@/lib/bmplRegistration';
 
 function saveBmplRegistration(reg: BmplRegistration) {
   localStorage.setItem(BMPL_REG_KEY, JSON.stringify(reg));

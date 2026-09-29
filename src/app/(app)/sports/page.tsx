@@ -1,9 +1,11 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { MapPin, Plus } from 'lucide-react';
-import { loadBmplRegistration, type BmplRegistration } from '@/app/(app)/sports/bmpl/register/page';
+import { loadBmplRegistration, type BmplRegistration } from '@/lib/bmplRegistration';
 
 /* ── Types ──────────────────────────────────────────────────── */
 

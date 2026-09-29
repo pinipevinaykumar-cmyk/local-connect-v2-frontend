@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CheckCircle, Lock, Trophy, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { loadBmplRegistration } from '@/app/(app)/sports/bmpl/register/page';
-import { getCurrentPhase } from '@/lib/phaseConfig';
+import { loadBmplRegistration } from '@/lib/bmplRegistration';
+import { getCurrentPhase, loadPhases } from '@/lib/phaseConfig';
 
 const VOTE_KEY = 'bmpl_captain_vote_v1';
 
@@ -43,8 +43,9 @@ export default function VotePage() {
   const [myVote, setMyVote] = useState<string | null>(null);
   const [confirming, setConfirming] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const currentPhase = getCurrentPhase();
-  const isPhase4Active = currentPhase?.n === 4 && currentPhase?.status === 'active';
+  const phases = loadPhases();
+  const activePhaseN = getCurrentPhase(phases);
+  const isPhase4Active = activePhaseN === 4;
 
   useEffect(() => {
     setMyReg(loadBmplRegistration());

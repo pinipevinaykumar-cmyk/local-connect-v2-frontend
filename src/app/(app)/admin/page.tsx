@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AlertTriangle, Calendar, Check, CheckCircle, ChevronRight, Clock, Lock, Play, RefreshCw, Shield, Users, X, XCircle } from 'lucide-react';
@@ -18,7 +20,7 @@ import {
   loadBmplRegistration,
   BMPL_REG_KEY,
   type BmplRegistration,
-} from '@/app/(app)/sports/bmpl/register/page';
+} from '@/lib/bmplRegistration';
 
 /* ── Player type for admin view ─────────────────────────────── */
 

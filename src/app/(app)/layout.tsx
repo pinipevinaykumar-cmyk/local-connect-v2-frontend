@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { isLoggedIn } from '@/lib/auth';
 import { Sidebar } from '@/components/Sidebar';
@@ -25,7 +25,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           collapsed ? 'w-[68px]' : 'w-60',
         )}
       >
-        <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
+        <Suspense fallback={null}>
+          <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
+        </Suspense>
       </aside>
 
       {/* Main content */}

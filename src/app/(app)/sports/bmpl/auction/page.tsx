@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { loadBmplRegistration } from '@/app/(app)/sports/bmpl/register/page';
+import { loadBmplRegistration } from '@/lib/bmplRegistration';
 
 type Player = {
   id: number;
