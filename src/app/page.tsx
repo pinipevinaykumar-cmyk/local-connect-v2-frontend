@@ -1,151 +1,236 @@
+'use client';
+
 import Link from 'next/link';
-import {
-  ArrowRight,
-  BadgeCheck,
-  Building2,
-  HeartPulse,
-  LockKeyhole,
-  MapPin,
-  MoveUpRight,
-  ShieldCheck,
-  Sparkles,
-  Store,
-  Users,
-} from 'lucide-react';
+import { ArrowRight, Clock, MapPin, Search, ShieldCheck, Store } from 'lucide-react';
+import { LogoMark } from '@/components/LogoMark';
 
-const trustPoints = [
-  { icon: ShieldCheck, title: 'Built on trust', text: 'A dependable digital home for your local community.' },
-  { icon: BadgeCheck, title: 'Verified locally', text: 'Profiles and providers are shaped by the people nearby.' },
-  { icon: LockKeyhole, title: 'Your account, your space', text: 'Your community experience stays secure and personal.' },
-  { icon: Users, title: 'Growing together', text: 'A stronger network starts with one more neighbour.' },
+const chips = [
+  { emoji: '🥬', label: 'Groceries' },
+  { emoji: '🍅', label: 'Vegetables' },
+  { emoji: '🍗', label: 'Meat Shops' },
+  { emoji: '🏥', label: 'Doctors' },
+  { emoji: '🏫', label: 'Schools' },
+  { emoji: '⚽', label: 'Sports' },
+  { emoji: '🛠️', label: 'Hardware' },
+  { emoji: '⚡', label: 'Electricians' },
+  { emoji: '🔧', label: 'Plumbers' },
+  { emoji: '💼', label: 'Jobs' },
+  { emoji: '🏪', label: 'Businesses' },
 ];
 
-const customerBenefits = [
-  { icon: HeartPulse, title: 'Feel looked after', text: 'Reach the local support and resources your household needs.' },
-  { icon: MapPin, title: 'Stay connected nearby', text: 'A simpler way to take part in the life of your community.' },
-  { icon: Sparkles, title: 'Discover with confidence', text: 'Explore a trusted network once you have joined.' },
+const categories = [
+  { emoji: '🥬', title: 'Groceries & Vegetables', text: 'Fresh groceries, fruits and daily essentials.' },
+  { emoji: '🍗', title: 'Meat & Food', text: 'Restaurants, meat shops and local food outlets.' },
+  { emoji: '🏥', title: 'Healthcare', text: 'Doctors, hospitals, clinics and pharmacies.' },
+  { emoji: '🎓', title: 'Education', text: 'Schools, colleges and coaching centres.' },
+  { emoji: '⚽', title: 'Sports & Fitness', text: 'Sports academies, gyms and coaching centres.' },
+  { emoji: '🏪', title: 'Local Businesses', text: 'Shops, merchants and local stores.' },
+  { emoji: '🛠️', title: 'Home Services', text: 'Electricians, plumbers and mechanics.' },
+  { emoji: '👨‍💻', title: 'Professionals', text: 'Engineers, consultants and skilled experts.' },
 ];
 
-const merchantBenefits = [
-  { icon: Store, title: 'Be easier to find', text: 'Create a trusted digital presence for your local business.' },
-  { icon: Building2, title: 'Grow your reach', text: 'Connect with customers who want to support businesses nearby.' },
-  { icon: MoveUpRight, title: 'Move forward together', text: 'Build lasting relationships in the community you serve.' },
+const whyPoints = [
+  { icon: MapPin, title: 'Find Everything Nearby', text: 'Discover businesses and services around your location instantly.' },
+  { icon: ShieldCheck, title: 'Trusted Local Businesses', text: 'Connect with verified local merchants and professionals.' },
+  { icon: Clock, title: 'Save Time', text: 'No need to search multiple platforms. Everything local is in one place.' },
 ];
 
 export default function LandingPage() {
   return (
     <main className="landing-page min-h-dvh overflow-hidden bg-[#f5f3ed] text-[#17352a]">
-      <section className="landing-hero relative min-h-[720px] text-white">
+
+      {/* ── Hero ── */}
+      <section className="landing-hero relative text-white">
         <div className="landing-hero-image absolute inset-0" />
         <div className="landing-hero-shade absolute inset-0" />
-        <div className="relative mx-auto flex min-h-[720px] max-w-7xl flex-col px-5 pb-12 sm:px-8 lg:px-12">
+
+        <div className="relative mx-auto flex max-w-7xl flex-col px-5 pb-14 pt-0 sm:px-8 lg:px-12">
+
+          {/* Nav */}
           <nav className="flex items-center justify-between border-b border-white/20 py-5" aria-label="Main navigation">
-            <Link href="/" className="flex items-center gap-3" aria-label="Local Connect home">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#e9ae4a] text-[#17352a] shadow-lg shadow-black/10">
-                <span className="text-xl font-black">LC</span>
-              </span>
+            <Link href="/" className="flex items-center gap-2.5" aria-label="Local Connect home">
+              <LogoMark className="h-10 w-auto drop-shadow-lg" />
               <span className="text-lg font-bold tracking-[-0.02em]">Local Connect</span>
             </Link>
             <div className="hidden items-center gap-8 text-sm font-medium text-white/80 md:flex">
+              <a href="#categories" className="transition-colors hover:text-white">Categories</a>
               <a href="#why-local-connect" className="transition-colors hover:text-white">Why Local Connect</a>
-              <a href="#for-you" className="transition-colors hover:text-white">For your community</a>
               <Link href="/login" className="rounded-full border border-white/40 px-5 py-2.5 text-white transition-colors hover:bg-white hover:text-[#17352a]">Login</Link>
             </div>
             <Link href="/login" className="rounded-full border border-white/40 px-4 py-2 text-sm font-semibold text-white md:hidden">Login</Link>
           </nav>
 
-          <div className="flex flex-1 items-center py-20 lg:py-24">
-            <div className="max-w-3xl">
-              <p className="mb-6 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-[#f3c875]">
-                <span className="h-px w-8 bg-[#f3c875]" /> A better way to belong
-              </p>
-              <h1 className="max-w-3xl text-5xl font-extrabold leading-[0.98] tracking-[-0.05em] sm:text-6xl lg:text-8xl">
-                Your Community. Your People. Your Network.
-              </h1>
-              <p className="mt-7 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
-                Join a trusted community platform that brings residents, local businesses, and essential services together while creating new opportunities for growth and connection.
-              </p>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <Link href="/register?type=CUSTOMER" className="group inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#e9ae4a] px-7 font-bold text-[#17352a] shadow-xl shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-[#f3c875]">
-                  Register as Customer <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link href="/register?type=MERCHANT" className="inline-flex h-14 items-center justify-center gap-3 rounded-full border border-white/50 bg-white/10 px-7 font-bold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/20">
-                  Register as Merchant <Store size={18} />
+          {/* Hero body */}
+          <div className="mx-auto mt-14 w-full max-w-3xl text-center lg:mt-20">
+
+            {/* Headline */}
+            <h1 className="text-4xl font-extrabold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-[3.75rem]">
+              <span className="block whitespace-nowrap">Everything Around You.</span>
+              <span className="block text-[#f3c875]">All in One Place.</span>
+            </h1>
+
+            {/* Sub-headline */}
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/75 sm:text-base sm:leading-8">
+              Discover businesses, services, professionals, and opportunities around you through one trusted platform.
+            </p>
+
+            {/* Search bar */}
+            <div className="mx-auto mt-8 w-full max-w-2xl">
+              <div className="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-2xl shadow-black/30 ring-1 ring-white/20">
+                <Search size={22} className="shrink-0 text-[#5f6d64]" />
+                <input
+                  type="text"
+                  placeholder="What are you looking for today?"
+                  className="flex-1 bg-transparent text-sm font-medium text-[#17352a] placeholder:text-[#9aab9e] outline-none sm:text-base"
+                  readOnly
+                  onClick={() => window.location.href = '/register?type=CUSTOMER'}
+                />
+                <Link
+                  href="/register?type=CUSTOMER"
+                  className="shrink-0 rounded-xl bg-[#17352a] px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#2d7148]"
+                >
+                  Search
                 </Link>
               </div>
-              <p className="mt-5 text-sm text-white/70">Already have an account? <Link href="/login" className="font-bold text-white underline decoration-[#e9ae4a] underline-offset-4">Login</Link></p>
+
+              {/* Quick-search chips */}
+              <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {chips.map(({ emoji, label }) => (
+                  <Link
+                    key={label}
+                    href="/register?type=CUSTOMER"
+                    className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/25"
+                  >
+                    <span>{emoji}</span> {label}
+                  </Link>
+                ))}
+              </div>
             </div>
+
+            {/* CTA buttons */}
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/register?type=CUSTOMER" className="group inline-flex h-13 items-center justify-center gap-2.5 rounded-full bg-[#e9ae4a] px-7 py-3.5 font-bold text-[#17352a] shadow-xl shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-[#f3c875]">
+                Explore Nearby <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link href="/register?type=MERCHANT" className="inline-flex h-13 items-center justify-center gap-2.5 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 font-bold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/20">
+                Register Your Business <Store size={17} />
+              </Link>
+            </div>
+
+            <p className="mt-4 text-xs text-white/60">Already have an account? <Link href="/login" className="font-bold text-white underline decoration-[#e9ae4a] underline-offset-4">Login</Link></p>
           </div>
 
-          <div className="flex items-center gap-3 text-xs font-semibold text-white/70">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30"><MapPin size={14} /></span>
-            Rooted in Andhra Pradesh · Made for local life
-          </div>
         </div>
       </section>
 
-      <section id="why-local-connect" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="mb-10 max-w-xl">
-          <p className="section-kicker">A network you can trust</p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.04em] sm:text-5xl">The confidence of knowing you belong.</h2>
+      {/* ── Categories ── */}
+      <section id="categories" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+        <div className="mb-8 flex items-end justify-between">
+          <div>
+            <p className="section-kicker">Browse by category</p>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] sm:text-4xl">Find what you need, right where you are.</h2>
+          </div>
+          <Link href="/register?type=CUSTOMER" className="hidden items-center gap-1 text-sm font-bold text-[#2d7148] sm:flex">
+            View all <ArrowRight size={15} />
+          </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {trustPoints.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="trust-card rounded-2xl border border-[#d9ded2] bg-white/70 p-6">
-              <div className="mb-10 flex h-11 w-11 items-center justify-center rounded-xl bg-[#e3eee2] text-[#2d7148]"><Icon size={20} /></div>
-              <h3 className="font-bold">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#5f6d64]">{text}</p>
-            </div>
+          {categories.map(({ emoji, title, text }) => (
+            <Link
+              key={title}
+              href="/register?type=CUSTOMER"
+              className="group flex flex-col gap-3 rounded-2xl border border-[#d9ded2] bg-white/70 p-6 transition-all hover:-translate-y-1 hover:border-[#2d7148]/40 hover:shadow-lg hover:shadow-[#17352a]/8"
+            >
+              <span className="text-3xl">{emoji}</span>
+              <div className="flex-1">
+                <h3 className="font-bold text-[#17352a] group-hover:text-[#2d7148]">{title}</h3>
+                <p className="mt-1.5 text-sm leading-6 text-[#5f6d64]">{text}</p>
+              </div>
+              <ArrowRight size={15} className="text-[#9aab9e] transition-transform group-hover:translate-x-1 group-hover:text-[#2d7148]" />
+            </Link>
           ))}
         </div>
       </section>
 
-      <section id="for-you" className="border-y border-[#d9ded2] bg-[#e6eee3] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {/* ── Why Local Connect ── */}
+      <section id="why-local-connect" className="border-y border-[#d9ded2] bg-[#e6eee3] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="section-kicker">One platform, two ways to grow</p>
-              <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.04em] sm:text-5xl">Your next chapter starts close to home.</h2>
-              <p className="mt-5 max-w-md leading-7 text-[#5f6d64]">Whether you are building a livelihood or finding your people, Local Connect helps your community move forward together.</p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <BenefitGroup label="For customers" items={customerBenefits} />
-              <BenefitGroup label="For merchants" items={merchantBenefits} />
-            </div>
+          <div className="mb-10 max-w-xl">
+            <p className="section-kicker">Why Local Connect</p>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] sm:text-4xl">One platform for everything local.</h2>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {whyPoints.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-2xl border border-[#cfdccd] bg-white/80 p-6">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#e3eee2] text-[#2d7148]">
+                  <Icon size={20} />
+                </div>
+                <h3 className="font-bold">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#5f6d64]">{text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#17352a] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-24">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+      {/* ── Local Ecosystem ── */}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="section-kicker text-[#f3c875]">Start with your community</p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.04em] sm:text-5xl">There is more waiting on the other side of joining.</h2>
+            <p className="section-kicker">Local Ecosystem</p>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] sm:text-4xl">Everything local. One platform.</h2>
+            <p className="mt-5 max-w-md leading-7 text-[#5f6d64]">
+              Local Connect brings together businesses, services, professionals, education, healthcare and everyday essentials into a single platform designed for your area.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link href="/register?type=CUSTOMER" className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-[#17352a] px-6 text-sm font-bold text-white transition-all hover:bg-[#2d7148]">
+                Start Discovering <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link href="/register?type=MERCHANT" className="inline-flex h-12 items-center gap-2.5 rounded-full border border-[#17352a]/30 px-6 text-sm font-bold text-[#17352a] transition-all hover:border-[#17352a] hover:bg-[#17352a]/5">
+                List Your Business
+              </Link>
+            </div>
           </div>
-          <Link href="/register" className="group inline-flex h-14 shrink-0 items-center gap-3 rounded-full bg-[#e9ae4a] px-7 font-bold text-[#17352a] transition-all hover:bg-[#f3c875]">Create your account <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></Link>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { value: '9+', label: 'Categories' },
+              { value: '100+', label: 'Services' },
+              { value: '1', label: 'Platform' },
+              { value: '∞', label: 'Possibilities' },
+            ].map(({ value, label }) => (
+              <div key={label} className="rounded-2xl border border-[#d9ded2] bg-white/70 p-6 text-center">
+                <p className="text-4xl font-extrabold tracking-[-0.04em] text-[#17352a]">{value}</p>
+                <p className="mt-1 text-sm text-[#5f6d64]">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ── */}
+      <section className="bg-[#17352a] px-5 py-16 text-white sm:px-8 lg:px-12 lg:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+            <div>
+              <p className="section-kicker text-[#f3c875]">Discover everything around you</p>
+              <h2 className="mt-2 max-w-2xl text-2xl font-extrabold tracking-[-0.04em] sm:text-4xl">
+                From groceries to doctors, schools to engineers — it&apos;s all here.
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
+                Local Connect helps people discover everything around them through one simple platform.
+              </p>
+            </div>
+            <Link href="/register" className="group inline-flex h-14 shrink-0 items-center gap-3 rounded-full bg-[#e9ae4a] px-7 font-bold text-[#17352a] transition-all hover:bg-[#f3c875]">
+              Create your account <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
       </section>
 
       <footer className="flex flex-col gap-3 bg-[#10271f] px-5 py-8 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12">
         <span className="font-bold text-white/80">Local Connect</span>
-        <span>For the people, places, and possibilities close to home.</span>
+        <span>Everything Around You. All in One Place.</span>
       </footer>
     </main>
-  );
-}
-
-function BenefitGroup({ label, items }: { label: string; items: typeof customerBenefits }) {
-  return (
-    <div className="rounded-2xl border border-[#cfdccd] bg-white/70 p-6 sm:p-7">
-      <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-[#2d7148]">{label}</h3>
-      <div className="space-y-5">
-        {items.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="flex gap-4">
-            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f3c875]/30 text-[#9a6b1d]"><Icon size={17} /></span>
-            <div><h4 className="font-bold">{title}</h4><p className="mt-1 text-sm leading-5 text-[#5f6d64]">{text}</p></div>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }

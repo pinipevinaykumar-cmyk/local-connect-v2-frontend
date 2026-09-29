@@ -3,7 +3,7 @@ import './globals.css';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'Local Connect — Your Community. Your People. Your Network.',
+  title: 'Local Connect — Everything Around You. All in One Place.',
   description:
     'A trusted digital community for people and local businesses across Andhra Pradesh.',
   manifest: '/manifest.json',
