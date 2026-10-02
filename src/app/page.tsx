@@ -83,10 +83,10 @@ export default function LandingPage() {
                   placeholder="What are you looking for today?"
                   className="flex-1 bg-transparent text-sm font-medium text-[#17352a] placeholder:text-[#9aab9e] outline-none sm:text-base"
                   readOnly
-                  onClick={() => window.location.href = '/register?type=CUSTOMER'}
+                  onClick={() => window.location.href = '/register'}
                 />
                 <Link
-                  href="/register?type=CUSTOMER"
+                  href="/register"
                   className="shrink-0 rounded-xl bg-[#17352a] px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#2d7148]"
                 >
                   Search
@@ -98,7 +98,7 @@ export default function LandingPage() {
                 {chips.map(({ emoji, label }) => (
                   <Link
                     key={label}
-                    href="/register?type=CUSTOMER"
+                    href="/register"
                     className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/25"
                   >
                     <span>{emoji}</span> {label}
@@ -109,11 +109,11 @@ export default function LandingPage() {
 
             {/* CTA buttons */}
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/register?type=CUSTOMER" className="group inline-flex h-13 items-center justify-center gap-2.5 rounded-full bg-[#e9ae4a] px-7 py-3.5 font-bold text-[#17352a] shadow-xl shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-[#f3c875]">
-                Explore Nearby <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
+              <Link href="/register" className="group inline-flex h-13 items-center justify-center gap-2.5 rounded-full bg-[#e9ae4a] px-7 py-3.5 font-bold text-[#17352a] shadow-xl shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-[#f3c875]">
+                Get Started <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link href="/register?type=MERCHANT" className="inline-flex h-13 items-center justify-center gap-2.5 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 font-bold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/20">
-                Register Your Business <Store size={17} />
+              <Link href="/login" className="inline-flex h-13 items-center justify-center gap-2.5 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 font-bold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/20">
+                Login <Store size={17} />
               </Link>
             </div>
 
@@ -130,7 +130,7 @@ export default function LandingPage() {
             <p className="section-kicker">Browse by category</p>
             <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.04em] sm:text-4xl">Find what you need, right where you are.</h2>
           </div>
-          <Link href="/register?type=CUSTOMER" className="hidden items-center gap-1 text-sm font-bold text-[#2d7148] sm:flex">
+          <Link href="/register" className="hidden items-center gap-1 text-sm font-bold text-[#2d7148] sm:flex">
             View all <ArrowRight size={15} />
           </Link>
         </div>
@@ -138,7 +138,7 @@ export default function LandingPage() {
           {categories.map(({ emoji, title, text }) => (
             <Link
               key={title}
-              href="/register?type=CUSTOMER"
+              href="/register"
               className="group flex flex-col gap-3 rounded-2xl border border-[#d9ded2] bg-white/70 p-6 transition-all hover:-translate-y-1 hover:border-[#2d7148]/40 hover:shadow-lg hover:shadow-[#17352a]/8"
             >
               <span className="text-3xl">{emoji}</span>
@@ -183,11 +183,11 @@ export default function LandingPage() {
               Local Connect brings together businesses, services, professionals, education, healthcare and everyday essentials into a single platform designed for your area.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/register?type=CUSTOMER" className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-[#17352a] px-6 text-sm font-bold text-white transition-all hover:bg-[#2d7148]">
+              <Link href="/register" className="group inline-flex h-12 items-center gap-2.5 rounded-full bg-[#17352a] px-6 text-sm font-bold text-white transition-all hover:bg-[#2d7148]">
                 Start Discovering <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link href="/register?type=MERCHANT" className="inline-flex h-12 items-center gap-2.5 rounded-full border border-[#17352a]/30 px-6 text-sm font-bold text-[#17352a] transition-all hover:border-[#17352a] hover:bg-[#17352a]/5">
-                List Your Business
+              <Link href="/login" className="inline-flex h-12 items-center gap-2.5 rounded-full border border-[#17352a]/30 px-6 text-sm font-bold text-[#17352a] transition-all hover:border-[#17352a] hover:bg-[#17352a]/5">
+                Login
               </Link>
             </div>
           </div>

@@ -218,12 +218,19 @@ function VillageModal({ village, players, onClose }: { village: string; players:
 export default function HomePage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const [hasBusiness, setHasBusiness] = useState(false);
   const [villageModal, setVillageModal] = useState<string | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
   const [villages, setVillages] = useState<Village[]>(BMPL_VILLAGES);
 
   useEffect(() => {
-    setUser(getUser());
+    const u = getUser();
+    setUser(u);
+    if (u) {
+      import('@/lib/api').then(({ api }) =>
+        api.myBusinesses().then((list) => setHasBusiness((list as unknown[]).length > 0)).catch(() => {})
+      );
+    }
     // Merge localStorage registration into player list until backend is live
     const reg = loadBmplRegistration();
     if (reg) {
@@ -354,6 +361,27 @@ export default function HomePage() {
             BMPL Player Hub — Explore all players across Biccavolu Mandal
           </p>
         </div>
+
+        {/* ── Business Upgrade Banner ── */}
+        {!hasBusiness && (
+          <div className="relative overflow-hidden rounded-2xl border border-[#1E7B3B]/20 bg-gradient-to-br from-[#f0faf4] to-[#e6f4ec] p-5 flex items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#1E7B3B]/10 text-2xl">🏪</div>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-[#17352a] text-sm leading-snug">
+                Do you own a shop, service, restaurant, or business?
+              </p>
+              <p className="text-xs text-[#5f6d64] mt-0.5">
+                Promote it on Local Connect and reach nearby customers.
+              </p>
+            </div>
+            <button
+              onClick={() => router.push('/merchant/add-business')}
+              className="shrink-0 rounded-xl bg-[#1E7B3B] px-4 py-2 text-xs font-bold text-white hover:bg-[#2d9b4e] transition-colors whitespace-nowrap"
+            >
+              Create Business
+            </button>
+          </div>
+        )}
 
         {/* ── Section 1: Verified Auction Players ── */}
         <section>

@@ -67,8 +67,7 @@ export default function ProfilePage() {
   if (!user) return null;
 
   const roleConfig = {
-    CUSTOMER: { label: 'Customer', variant: 'info' as const, emoji: '👤' },
-    MERCHANT: { label: 'Shop Owner', variant: 'success' as const, emoji: '🏪' },
+    USER: { label: 'Member', variant: 'info' as const, emoji: '👤' },
     ADMIN: { label: 'Admin', variant: 'danger' as const, emoji: '🛡️' },
   };
 
@@ -160,7 +159,7 @@ export default function ProfilePage() {
         </Card>
 
         {/* Merchant link */}
-        {user.userType === 'MERCHANT' && (
+        {user.userType === 'ADMIN' && (
           <Card shadow="sm">
             <button
               onClick={() => router.push('/merchant/dashboard')}

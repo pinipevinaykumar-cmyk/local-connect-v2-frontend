@@ -55,7 +55,7 @@ export default function LoginPage() {
     try {
       const res = await api.login({ phone: identifier.trim(), password }) as AuthResponse;
       saveAuth(res.token, res.user);
-      router.push(res.user.userType === 'MERCHANT' ? '/merchant/dashboard' : '/home');
+      router.push(res.user.userType === 'ADMIN' ? '/admin/dashboard' : '/home');
     } catch (err) {
       setServerError((err as Error).message || 'Invalid credentials. Please try again.');
     } finally {

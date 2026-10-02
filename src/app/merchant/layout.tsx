@@ -13,7 +13,7 @@ export default function MerchantLayout({ children }: { children: React.ReactNode
       return;
     }
     const user = getUser();
-    if (user && user.userType !== 'MERCHANT' && user.userType !== 'ADMIN') {
+    if (user && user.userType !== 'ADMIN') {
       router.replace('/home');
     }
   }, [router]);

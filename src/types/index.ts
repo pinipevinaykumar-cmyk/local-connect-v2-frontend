@@ -1,4 +1,4 @@
-export type UserType = 'CUSTOMER' | 'MERCHANT' | 'ADMIN';
+export type UserType = 'USER' | 'ADMIN';
 export type ShopStatus = 'OPEN' | 'CLOSED' | 'BUSY';
 
 export interface User {
@@ -61,7 +61,6 @@ export interface RegisterPayload {
   username: string;
   phone: string;
   password: string;
-  userType: UserType;
   districtId?: number;
   mandalId?: number;
   villageId?: number;
